@@ -11,8 +11,11 @@ function matchOne(pattern, text){
     return pattern === text;
 }
 
-console.log(matchOne('a', 'a'));
-console.log(matchOne('.', 'z'));
-console.log(matchOne('', 'h'));
-console.log(matchOne('a', 'b'));
-console.log(matchOne('p', ''));
+function match(pattern, text){
+    if(!pattern || pattern === "") return true; //Base case - if the pattern is empty any inputted text is a match
+    if(!text) return false;
+    else {
+        return (matchOne(pattern[0], text[0]) && match(pattern.slice(1), text.slice(1)));
+    }
+
+}
