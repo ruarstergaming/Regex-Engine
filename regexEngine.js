@@ -33,6 +33,10 @@ function match(pattern, text){
         return matchQuestion(pattern, text);
     } 
 
+    else if (pattern[1] === "*") {
+        return matchStar(pattern, text);
+    } 
+
     else {
         return (matchOne(pattern[0], text[0]) && match(pattern.slice(1), text.slice(1)));
     }
@@ -53,6 +57,19 @@ function matchQuestion(pattern, text) {
     else {
       return match(pattern.slice(2), text);
     }
+}
+
+/**
+ * Implementation of * syntax
+ * @param {*} pattern 
+ * @param {*} text 
+ * @returns 
+ */
+function matchStar(pattern, text) {
+    return (
+      (matchOne(pattern[0], text[0]) && match(pattern, text.slice(1))) ||
+      match(pattern.slice(2), text)
+    );
   }
 
 /**
