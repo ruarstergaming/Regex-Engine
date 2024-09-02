@@ -11,6 +11,13 @@ function matchOne(pattern, text){
     return pattern === text;
 }
 
+/**
+ * Recursive function that uses the match one function over and over 
+ * checking each character matches the pattern
+ * @param {*} pattern 
+ * @param {*} text 
+ * @returns 
+ */
 function match(pattern, text){
     if(!pattern || pattern === "") return true; //Base case - if the pattern is empty any inputted text is a match
     if(!text) return false;
