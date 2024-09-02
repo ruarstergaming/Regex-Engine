@@ -78,14 +78,10 @@ function matchStar(pattern, text) {
  * @param {*} text 
  */
 function search(pattern, text){
-    if(pattern && pattern[0] ==="^") {
+    if (pattern[0] === "^") {
         return match(pattern.slice(1), text);
-    }
-    else{
-        //This runs match on every index of the text, meaning the pattern is tested against every starting point of text
-        return text.split("").some((_, index) => {
-            return match(pattern, text.slice(index));
-        });
-    }
+      } else {
+        return match(".*" + pattern, text);
+      }
 }
 
